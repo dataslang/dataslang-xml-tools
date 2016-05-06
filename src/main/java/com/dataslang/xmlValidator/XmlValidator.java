@@ -6,11 +6,13 @@ public class XmlValidator {
 
     private static final String VALIDATE_OPTION = "validate";
     private static final String TRANSFORM_OPTION = "transform";
+    private static final String META_OPTION = "meta";
 
     public static void main(String[] args){
         MainCommander com = new MainCommander();
         ValCommander val = new ValCommander();
         XsltCommander xsl = new XsltCommander();
+        GetDataValidator dat = new GetDataValidator();
 
         JCommander jct = null;
 
@@ -18,6 +20,7 @@ public class XmlValidator {
             jct = new JCommander(com);
             jct.addCommand(VALIDATE_OPTION, val);
             jct.addCommand(TRANSFORM_OPTION, xsl);
+            jct.addCommand(META_OPTION, dat);
             jct.parse(args);
         } catch (Exception e) {
             if(com.debug){
@@ -39,6 +42,8 @@ public class XmlValidator {
         }else if(jct.getParsedCommand().equalsIgnoreCase(TRANSFORM_OPTION)){
             Transformator transformator = new Transformator(xsl.xml, xsl.xslt, xsl.output, com.debug);
             transformator.transformate();
+        }else if(jct.getParsedCommand().equalsIgnoreCase(META_OPTION)){
+            
         }
     }
 }

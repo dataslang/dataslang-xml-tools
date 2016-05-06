@@ -9,5 +9,8 @@ public class XsltCommander {
     public String xml;
 
     @Parameter(names = "--xslt", required = true, description = "XSLT file")
-    public String xsd;
+    public String xslt;
+
+    @Parameter(names = {"-o", "--output"}, description = "generate the xml fine into this parameter")
+    public String output;
 }

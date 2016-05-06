@@ -11,6 +11,6 @@ public class XsltCommander {
     @Parameter(names = "--xslt", required = true, description = "XSLT file")
     public String xslt;
 
-    @Parameter(names = {"-o", "--output"}, description = "generate the xml fine into this parameter")
+    @Parameter(names = {"-o", "--output"}, description = "generate the XML file into this destination")
     public String output;
 }

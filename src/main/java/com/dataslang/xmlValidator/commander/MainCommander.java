@@ -1,4 +1,4 @@
-package com.dataslang.xmlValidator;
+package com.dataslang.xmlValidator.commander;
 
 import com.beust.jcommander.Parameter;
 

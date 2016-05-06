@@ -1,6 +1,10 @@
 package com.dataslang.xmlValidator;
 
 import com.beust.jcommander.JCommander;
+import com.dataslang.xmlValidator.commander.GetMetaCommander;
+import com.dataslang.xmlValidator.commander.MainCommander;
+import com.dataslang.xmlValidator.commander.ValCommander;
+import com.dataslang.xmlValidator.commander.XsltCommander;
 
 public class XmlValidator {
 
@@ -12,7 +16,7 @@ public class XmlValidator {
         MainCommander com = new MainCommander();
         ValCommander val = new ValCommander();
         XsltCommander xsl = new XsltCommander();
-        GetDataValidator dat = new GetDataValidator();
+        GetMetaCommander dat = new GetMetaCommander();
 
         JCommander jct = null;
 
@@ -43,7 +47,7 @@ public class XmlValidator {
             Transformator transformator = new Transformator(xsl.xml, xsl.xslt, xsl.output, com.debug);
             transformator.transformate();
         }else if(jct.getParsedCommand().equalsIgnoreCase(META_OPTION)){
-            
+
         }
     }
 }

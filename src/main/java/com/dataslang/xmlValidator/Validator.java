@@ -1,4 +1,4 @@
-package xmlValidator;
+package com.dataslang.xmlValidator;
 
 import org.xml.sax.SAXException;
 

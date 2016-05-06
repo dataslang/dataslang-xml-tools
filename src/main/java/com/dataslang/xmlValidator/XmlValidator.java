@@ -1,4 +1,4 @@
-package xmlValidator;
+package com.dataslang.xmlValidator;
 
 import com.beust.jcommander.JCommander;
 
@@ -10,7 +10,10 @@ public class XmlValidator {
         try {
             jct = new JCommander(val, args);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            if(val.debug)
+                e.printStackTrace();
+            else
+                System.out.println(e.getMessage());
             System.exit(1);
         }
         if(args.length == 0 || val.help){

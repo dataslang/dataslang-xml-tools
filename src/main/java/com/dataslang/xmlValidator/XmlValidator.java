@@ -13,26 +13,32 @@ public class XmlValidator {
         XsltCommander xsl = new XsltCommander();
 
         JCommander jct = null;
+
         try {
-            jct = new JCommander(com, args);
-            jct.addCommand("validate", val);
-            jct.addCommand("transform", xsl);
+            jct = new JCommander(com);
+            jct.addCommand(VALIDATE_OPTION, val);
+            jct.addCommand(TRANSFORM_OPTION, xsl);
+            jct.parse(args);
         } catch (Exception e) {
-            if(com.debug)
+            if(com.debug){
                 e.printStackTrace();
-            else
+                System.exit(1);
+            }
+            else {
                 System.out.println(e.getMessage());
-            System.exit(1);
+                System.exit(1);
+            }
         }
-        if(args.length == 0 || com.help){
+        if(com.help){
             jct.usage();
-            System.exit(0);
         }
 
         if(jct.getParsedCommand().equalsIgnoreCase(VALIDATE_OPTION)){
             Validator validator = new Validator(val.xml, val.xsd, com.debug);
             validator.validate();
+        }else if(jct.getParsedCommand().equalsIgnoreCase(TRANSFORM_OPTION)){
+            Transformator transformator = new Transformator(xsl.xml, xsl.xslt, xsl.output, com.debug);
+            transformator.transformate();
         }
-
     }
 }

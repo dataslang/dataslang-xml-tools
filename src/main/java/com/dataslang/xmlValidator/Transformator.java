@@ -19,12 +19,6 @@ public class Transformator {
         this.debug = debug;
     }
 
-    public Transformator(String xml, String xslt, boolean debug) {
-        this.xml = xml;
-        this.xslt = xslt;
-        this.debug = debug;
-    }
-
     private String getXml() {
         return xml;
     }
@@ -58,7 +52,7 @@ public class Transformator {
 
         StreamSource in = new StreamSource(this.getXml());
 
-        if(output == null){
+        if(getOutput() == null){
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             try {
                 transformer.transform(in, new StreamResult(outputStream));

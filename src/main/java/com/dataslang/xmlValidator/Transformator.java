@@ -49,7 +49,11 @@ public class Transformator {
         try {
              transformer = factory.newTransformer(xslStream);
         } catch (TransformerConfigurationException e) {
-            e.printStackTrace();
+            if(isDebug())
+                e.printStackTrace();
+            else
+                System.out.println(e.getMessage());
+            System.exit(2);
         }
 
         StreamSource in = new StreamSource(this.getXml());
@@ -59,7 +63,11 @@ public class Transformator {
             try {
                 transformer.transform(in, new StreamResult(outputStream));
             } catch (TransformerException e) {
-                e.printStackTrace();
+                if(isDebug())
+                    e.printStackTrace();
+                else
+                    System.out.println(e.getMessage());
+                System.exit(3);
             }
             System.out.println(outputStream.toString());
         }else{
@@ -67,7 +75,11 @@ public class Transformator {
                 Result xmlOutput = new StreamResult(new File(output));
                 transformer.transform(in, xmlOutput);
             } catch (TransformerException e) {
-                e.printStackTrace();
+                if(isDebug())
+                    e.printStackTrace();
+                else
+                    System.out.println(e.getMessage());
+                System.exit(4);
             }
         }
 

@@ -1,6 +1,7 @@
 package com.dataslang.xmlValidator;
 
 import com.beust.jcommander.JCommander;
+import com.dataslang.xmlValidator.actions.HtmlEditor;
 import com.dataslang.xmlValidator.actions.PdfEditor;
 import com.dataslang.xmlValidator.actions.Transformator;
 import com.dataslang.xmlValidator.actions.Validator;
@@ -55,6 +56,9 @@ public class MainMenu {
             } else if (jct.getParsedCommand().equalsIgnoreCase(META_OPTION)) {
                 PdfEditor pdfEditor = new PdfEditor(dat.pdf, dat.output, dat.meta);
                 pdfEditor.meta();
+            }else if (jct.getParsedCommand().equalsIgnoreCase(HTML_OPTION)){
+                HtmlEditor htmlEditor = new HtmlEditor(html.input, html.output);
+                htmlEditor.transform();
             }
         } catch (NullPointerException e) {
             jct.usage();

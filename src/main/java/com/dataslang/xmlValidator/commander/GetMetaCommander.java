@@ -10,4 +10,7 @@ public class GetMetaCommander {
 
     @Parameter(names = {"-o", "--output"}, description = "generate the PDF file into this destination")
     public String output;
+
+    @Parameter(names = {"-m", "--meta"}, description = "if this parameter is added, the metadata path given will be inserted into pdf instead of extracting")
+    public String meta;
 }

@@ -4,8 +4,15 @@ import com.dataslang.xmlValidator.util.ParseStream;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentCatalog;
 import org.apache.pdfbox.pdmodel.common.PDMetadata;
+import org.apache.pdfbox.preflight.PreflightDocument;
+import org.apache.pdfbox.preflight.ValidationResult;
+import org.apache.pdfbox.preflight.exception.SyntaxValidationException;
+import org.apache.pdfbox.preflight.parser.PreflightParser;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 import static com.dataslang.xmlValidator.util.ParseStream.getStringFromInputStream;
 
@@ -13,11 +20,13 @@ public class PdfEditor {
     private String pdf;
     private String output;
     private String xml;
+    private boolean validate;
 
-    public PdfEditor(String pdf, String output, String xml) {
+    public PdfEditor(String pdf, String output, String xml, boolean validate) {
         this.pdf = pdf;
         this.output = output;
         this.xml = xml;
+        this.validate = validate;
     }
 
     private String getPdf() {
@@ -33,10 +42,14 @@ public class PdfEditor {
     }
 
     public void meta() throws IOException {
-        if(getXml() == null)
-            getMeta();
-        else
-            addMeta();
+        if(validate){
+            typePDF();
+        }else{
+            if(getXml() == null)
+                getMeta();
+            else
+                addMeta();
+        }
     }
 
     private void getMeta() throws IOException {
@@ -66,4 +79,33 @@ public class PdfEditor {
 
     }
 
+    private void typePDF() throws IOException {
+        ValidationResult result;
+        String file = getPdf();
+
+        try {
+            PreflightParser parser = new PreflightParser(file);
+            parser.parse();
+            PreflightDocument document = parser.getPreflightDocument();
+            document.validate();
+            result = document.getResult();
+            document.close();
+        } catch (SyntaxValidationException e) {
+            result = e.getResult();
+        }
+
+        if (result.isValid())
+        {
+            System.out.println("The file " + file + " is a valid PDF/A-1b file");
+        }
+        else
+        {
+            System.out.println("The file" + file + " is not valid, error(s) :");
+            for (ValidationResult.ValidationError error : result.getErrorsList())
+            {
+                System.out.println(error.getErrorCode() + " : " + error.getDetails());
+            }
+            System.exit(1);
+        }
+    }
 }

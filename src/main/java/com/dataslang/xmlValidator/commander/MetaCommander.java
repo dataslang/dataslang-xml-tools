@@ -13,4 +13,7 @@ public class MetaCommander {
 
     @Parameter(names = {"-m", "--meta"}, description = "if this parameter is added, the metadata will be inserted from this path instead of extracting it")
     public String meta;
+
+    @Parameter(names = {"-v", "--validate"}, description = "if checked, this will only validate the file", arity = 0)
+    public boolean validate;
 }

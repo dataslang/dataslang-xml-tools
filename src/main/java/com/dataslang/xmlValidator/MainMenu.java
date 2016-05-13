@@ -54,7 +54,7 @@ public class MainMenu {
                 Transformator transformator = new Transformator(xsl.xml, xsl.xslt, xsl.output);
                 transformator.transformate();
             } else if (jct.getParsedCommand().equalsIgnoreCase(META_OPTION)) {
-                PdfEditor pdfEditor = new PdfEditor(dat.pdf, dat.output, dat.meta);
+                PdfEditor pdfEditor = new PdfEditor(dat.pdf, dat.output, dat.meta, dat.validate);
                 pdfEditor.meta();
             }else if (jct.getParsedCommand().equalsIgnoreCase(HTML_OPTION)){
                 HtmlEditor htmlEditor = new HtmlEditor(html.input, html.output);

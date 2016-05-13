@@ -27,11 +27,14 @@ public class HtmlEditor {
 
     public void transform() throws IOException, DocumentException {
         Document document = new Document(PageSize.A4);
-        FileOutputStream fos = new FileOutputStream(getOutput());
+        OutputStream fos = new FileOutputStream(getOutput());
         PdfWriter pdfWriter = PdfWriter.getInstance(document, fos);
         document.open();
 
         HTMLWorker htmlWorker = new HTMLWorker(document);
         htmlWorker.parse(new BufferedReader(new FileReader(getHtml())));
+
+        document.close();
+        fos.close();
     }
 }

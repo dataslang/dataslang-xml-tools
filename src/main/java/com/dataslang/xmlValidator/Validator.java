@@ -12,12 +12,10 @@ import java.io.IOException;
 public class Validator {
     private String xml;
     private String xsd;
-    private boolean debug;
 
-    public Validator(String xml, String xsd, boolean debug) {
+    public Validator(String xml, String xsd) {
         this.xml = xml;
         this.xsd = xsd;
-        this.debug = debug;
     }
 
     private String getXml(){
@@ -28,31 +26,11 @@ public class Validator {
         return this.xsd;
     }
 
-    private boolean isDebug(){
-        return this.debug;
-    }
-
-    public void validate(){
+    public void validate() throws SAXException, IOException{
         SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        Schema schema = null;
-        try {
-            schema = factory.newSchema(new File(getXsd()));
-        } catch (SAXException e) {
-            if(isDebug())
-                e.printStackTrace();
-            else
-                System.out.println(e.getMessage());
-            System.exit(2);
-        }
+        Schema schema = factory.newSchema(new File(getXsd()));
+
         javax.xml.validation.Validator validator = schema.newValidator();
-        try {
-            validator.validate(new StreamSource(new File(getXml())));
-        } catch (IOException | SAXException e) {
-            if(isDebug())
-                e.printStackTrace();
-            else
-                System.out.println(e.getMessage());
-            System.exit(3);
-        }
+        validator.validate(new StreamSource(new File(getXml())));
     }
 }

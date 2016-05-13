@@ -10,13 +10,11 @@ public class Transformator {
     private String xml;
     private String xslt;
     private String output;
-    private boolean debug;
 
-    public Transformator(String xml, String xslt, String output, boolean debug) {
+    public Transformator(String xml, String xslt, String output) {
         this.xml = xml;
         this.xslt = xslt;
         this.output = output;
-        this.debug = debug;
     }
 
     private String getXml() {
@@ -27,54 +25,25 @@ public class Transformator {
         return xslt;
     }
 
-    private boolean isDebug() {
-        return debug;
-    }
-
     private String getOutput() {
         return output;
     }
 
-    public void transformate(){
+    public void transformate() throws TransformerException{
         TransformerFactory factory = TransformerFactory.newInstance();
         StreamSource xslStream = new StreamSource(this.getXslt());
-        Transformer transformer = null;
-
-        try {
-             transformer = factory.newTransformer(xslStream);
-        } catch (TransformerConfigurationException e) {
-            if(isDebug())
-                e.printStackTrace();
-            else
-                System.out.println(e.getMessage());
-            System.exit(2);
-        }
+        Transformer transformer = factory.newTransformer(xslStream);
 
         StreamSource in = new StreamSource(this.getXml());
 
         if(getOutput() == null){
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            try {
-                transformer.transform(in, new StreamResult(outputStream));
-            } catch (TransformerException e) {
-                if(isDebug())
-                    e.printStackTrace();
-                else
-                    System.out.println(e.getMessage());
-                System.exit(3);
-            }
+
+            transformer.transform(in, new StreamResult(outputStream));
             System.out.println(outputStream.toString());
         }else{
-            try{
-                Result xmlOutput = new StreamResult(new File(output));
-                transformer.transform(in, xmlOutput);
-            } catch (TransformerException e) {
-                if(isDebug())
-                    e.printStackTrace();
-                else
-                    System.out.println(e.getMessage());
-                System.exit(4);
-            }
+            Result xmlOutput = new StreamResult(new File(output));
+            transformer.transform(in, xmlOutput);
         }
 
     }

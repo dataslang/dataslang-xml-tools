@@ -12,7 +12,7 @@ public class XmlValidator {
     private static final String TRANSFORM_OPTION = "transform";
     private static final String META_OPTION = "meta";
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         MainCommander com = new MainCommander();
         ValCommander val = new ValCommander();
         XsltCommander xsl = new XsltCommander();
@@ -27,35 +27,38 @@ public class XmlValidator {
             jct.addCommand(META_OPTION, dat);
             jct.parse(args);
         } catch (Exception e) {
-            if(com.debug){
+            if (com.debug) {
                 e.printStackTrace();
                 System.exit(1);
-            }
-            else {
+            } else {
                 System.out.println(e.getMessage());
                 System.exit(1);
             }
         }
 
-        if(com.help){
+        if (com.help) {
             jct.usage();
             System.exit(0);
         }
 
         try {
-            if(jct.getParsedCommand().equalsIgnoreCase(VALIDATE_OPTION)){
-                Validator validator = new Validator(val.xml, val.xsd, com.debug);
+            if (jct.getParsedCommand().equalsIgnoreCase(VALIDATE_OPTION)) {
+                Validator validator = new Validator(val.xml, val.xsd);
                 validator.validate();
-            }else if(jct.getParsedCommand().equalsIgnoreCase(TRANSFORM_OPTION)){
-                Transformator transformator = new Transformator(xsl.xml, xsl.xslt, xsl.output, com.debug);
+            } else if (jct.getParsedCommand().equalsIgnoreCase(TRANSFORM_OPTION)) {
+                Transformator transformator = new Transformator(xsl.xml, xsl.xslt, xsl.output);
                 transformator.transformate();
-            }else if(jct.getParsedCommand().equalsIgnoreCase(META_OPTION)){
-                PdfEditor pdfEditor = new PdfEditor(dat.pdf, dat.output, dat.meta,com.debug);
+            } else if (jct.getParsedCommand().equalsIgnoreCase(META_OPTION)) {
+                PdfEditor pdfEditor = new PdfEditor(dat.pdf, dat.output, dat.meta);
                 pdfEditor.meta();
             }
-        } catch (Exception e) {
-            System.out.println("Syntax not correct");
+        } catch (NullPointerException e) {
             jct.usage();
+        } catch (Exception e){
+            if (com.debug)
+                e.printStackTrace();
+            else
+                System.out.println(e.getMessage());
         }
     }
 }

@@ -6,7 +6,7 @@ import com.dataslang.xmlValidator.commander.MainCommander;
 import com.dataslang.xmlValidator.commander.ValCommander;
 import com.dataslang.xmlValidator.commander.XsltCommander;
 
-public class XmlValidator {
+public class MainMenu {
 
     private static final String VALIDATE_OPTION = "validate";
     private static final String TRANSFORM_OPTION = "transform";

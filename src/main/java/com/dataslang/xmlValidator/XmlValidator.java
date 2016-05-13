@@ -37,19 +37,25 @@ public class XmlValidator {
             }
         }
 
-        if(com.help || args.length == 0){
+        if(com.help){
             jct.usage();
             System.exit(0);
         }
 
-        if(jct.getParsedCommand().equalsIgnoreCase(VALIDATE_OPTION)){
-            Validator validator = new Validator(val.xml, val.xsd, com.debug);
-            validator.validate();
-        }else if(jct.getParsedCommand().equalsIgnoreCase(TRANSFORM_OPTION)){
-            Transformator transformator = new Transformator(xsl.xml, xsl.xslt, xsl.output, com.debug);
-            transformator.transformate();
-        }else if(jct.getParsedCommand().equalsIgnoreCase(META_OPTION)){
-
+        try {
+            if(jct.getParsedCommand().equalsIgnoreCase(VALIDATE_OPTION)){
+                Validator validator = new Validator(val.xml, val.xsd, com.debug);
+                validator.validate();
+            }else if(jct.getParsedCommand().equalsIgnoreCase(TRANSFORM_OPTION)){
+                Transformator transformator = new Transformator(xsl.xml, xsl.xslt, xsl.output, com.debug);
+                transformator.transformate();
+            }else if(jct.getParsedCommand().equalsIgnoreCase(META_OPTION)){
+                PdfEditor pdfEditor = new PdfEditor(dat.pdf, dat.output, dat.meta,com.debug);
+                pdfEditor.meta();
+            }
+        } catch (Exception e) {
+            System.out.println("Syntax not correct");
+            jct.usage();
         }
     }
 }

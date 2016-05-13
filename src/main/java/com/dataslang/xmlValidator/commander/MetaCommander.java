@@ -11,6 +11,6 @@ public class MetaCommander {
     @Parameter(names = {"-o", "--output"}, description = "generate the PDF file into this destination")
     public String output;
 
-    @Parameter(names = {"-m", "--meta"}, description = "if this parameter is added, the metadata path given will be inserted into pdf instead of extracting")
+    @Parameter(names = {"-m", "--meta"}, description = "if this parameter is added, the metadata will be inserted from this path instead of extracting it")
     public String meta;
 }

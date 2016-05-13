@@ -1,28 +1,31 @@
 package com.dataslang.xmlValidator;
 
 import com.beust.jcommander.JCommander;
-import com.dataslang.xmlValidator.commander.MetaCommander;
-import com.dataslang.xmlValidator.commander.MainCommander;
-import com.dataslang.xmlValidator.commander.ValCommander;
-import com.dataslang.xmlValidator.commander.XsltCommander;
+import com.dataslang.xmlValidator.actions.PdfEditor;
+import com.dataslang.xmlValidator.actions.Transformator;
+import com.dataslang.xmlValidator.actions.Validator;
+import com.dataslang.xmlValidator.commander.*;
 
 public class MainMenu {
 
     private static final String VALIDATE_OPTION = "validate";
     private static final String TRANSFORM_OPTION = "transform";
     private static final String META_OPTION = "meta";
+    private static final String HTML_OPTION = "html";
 
     public static void main(String[] args) {
         MainCommander com = new MainCommander();
         ValCommander val = new ValCommander();
         XsltCommander xsl = new XsltCommander();
         MetaCommander dat = new MetaCommander();
+        HtmlToPdfCommander html = new HtmlToPdfCommander();
 
 
         JCommander jct = null;
 
         try {
             jct = new JCommander(com);
+            jct.addCommand(HTML_OPTION, html);
             jct.addCommand(VALIDATE_OPTION, val);
             jct.addCommand(TRANSFORM_OPTION, xsl);
             jct.addCommand(META_OPTION, dat);

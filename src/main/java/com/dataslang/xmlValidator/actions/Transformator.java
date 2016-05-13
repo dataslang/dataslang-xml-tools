@@ -1,4 +1,4 @@
-package com.dataslang.xmlValidator;
+package com.dataslang.xmlValidator.actions;
 
 import javax.xml.transform.*;
 import javax.xml.transform.stream.StreamResult;

@@ -1,4 +1,4 @@
-package com.dataslang.xmlValidator;
+package com.dataslang.xmlValidator.actions;
 
 import com.dataslang.xmlValidator.util.ParseStream;
 import org.apache.pdfbox.pdmodel.PDDocument;

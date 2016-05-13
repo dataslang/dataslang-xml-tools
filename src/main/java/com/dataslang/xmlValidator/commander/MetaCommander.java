@@ -4,7 +4,7 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
 
 @Parameters(commandDescription = "Get metadata from PDF")
-public class GetMetaCommander {
+public class MetaCommander {
     @Parameter(names = "--pdf", required = true, description = "Exctract metadata from PDF")
     public String pdf;
 

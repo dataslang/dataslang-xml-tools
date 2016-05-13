@@ -1,7 +1,7 @@
 package com.dataslang.xmlValidator;
 
 import com.beust.jcommander.JCommander;
-import com.dataslang.xmlValidator.commander.GetMetaCommander;
+import com.dataslang.xmlValidator.commander.MetaCommander;
 import com.dataslang.xmlValidator.commander.MainCommander;
 import com.dataslang.xmlValidator.commander.ValCommander;
 import com.dataslang.xmlValidator.commander.XsltCommander;
@@ -16,7 +16,8 @@ public class MainMenu {
         MainCommander com = new MainCommander();
         ValCommander val = new ValCommander();
         XsltCommander xsl = new XsltCommander();
-        GetMetaCommander dat = new GetMetaCommander();
+        MetaCommander dat = new MetaCommander();
+
 
         JCommander jct = null;
 

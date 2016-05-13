@@ -36,8 +36,10 @@ public class XmlValidator {
                 System.exit(1);
             }
         }
-        if(com.help){
+
+        if(com.help || args.length == 0){
             jct.usage();
+            System.exit(0);
         }
 
         if(jct.getParsedCommand().equalsIgnoreCase(VALIDATE_OPTION)){

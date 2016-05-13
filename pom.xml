@@ -17,8 +17,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-
-
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
@@ -39,7 +37,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>com.dataslang.xmlValidator.XmlValidator</mainClass>
+                            <mainClass>com.dataslang.xmlValidator.MainMenu</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -55,7 +53,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>com.dataslang.xmlValidator.XmlValidator</mainClass>
+                            <mainClass>com.dataslang.xmlValidator.MainMenu</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -83,6 +81,11 @@
             <groupId>com.beust</groupId>
             <artifactId>jcommander</artifactId>
             <version>1.48</version>
+        </dependency>
+        <dependency>
+            <groupId>org.xhtmlrenderer</groupId>
+            <artifactId>core-renderer</artifactId>
+            <version>R8</version>
         </dependency>
     </dependencies>
 </project>

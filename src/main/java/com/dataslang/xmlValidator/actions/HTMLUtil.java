@@ -8,11 +8,11 @@ import com.lowagie.text.pdf.PdfWriter;
 
 import java.io.*;
 
-public class HtmlEditor {
+public class HTMLUtil {
     private String html;
     private String output;
 
-    public HtmlEditor(String html, String output) {
+    public HTMLUtil(String html, String output) {
         this.html = html;
         this.output = output;
     }

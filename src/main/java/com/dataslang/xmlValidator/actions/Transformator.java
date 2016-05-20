@@ -44,7 +44,9 @@ public class Transformator {
         }else{
             Result xmlOutput = new StreamResult(new File(output));
             transformer.transform(in, xmlOutput);
+            System.out.println("Trasformazione riuscita");
         }
+
 
     }
 }

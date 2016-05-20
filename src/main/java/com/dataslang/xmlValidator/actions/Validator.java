@@ -42,5 +42,6 @@ public class Validator {
 
         javax.xml.validation.Validator validator = schema.newValidator();
         validator.validate(new StreamSource(xml));
+        System.out.println("File Valido");
     }
 }

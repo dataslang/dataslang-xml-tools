@@ -5,6 +5,6 @@ deploy:
   provider: releases
   api_key: "t1cVZ2VhUbbb16YmKJEc"
   file: "target/dataslang_java_tools-jar-with-dependencies.jar"
-  skip_cleanup: true
+  skip_cleanup: true # Make sure you have skip_cleanup set to true, otherwise Travis CI will delete all the files created during the build, which will probably delete what you are trying to upload.
   on:
     tags: true

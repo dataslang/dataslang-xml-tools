@@ -47,8 +47,8 @@ public class XMLUtil {
 
     public void validate() throws SAXException, IOException {
 
-        File xsd = new File(getFirstFile());
-        File xml = new File(getSecondFile());
+        File xml = new File(getFirstFile());
+        File xsd = new File(getSecondFile());
 
         if(!xsd.exists())
             throw new FileNotFoundException(xsd.getAbsolutePath() + " (No such file or directory)");

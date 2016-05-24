@@ -4,7 +4,7 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
 
 @Parameters(commandDescription = "Turns HTML file into PDF")
-public class HTMLTrasformCommander {
+public class HTMLTransformCommander {
     @Parameter(names = "--html", required = true, description = "HTML file to change")
     public String input;
 

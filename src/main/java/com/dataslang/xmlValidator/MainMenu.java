@@ -9,8 +9,8 @@ import com.dataslang.xmlValidator.commander.*;
 public class MainMenu {
 
     private static final String XML_VALIDATE_OPTION = "xmlvalidate";
-    private static final String XML_TRASFORM_OPTION = "xmltrasform";
-    private static final String HTML_TRASFORM_PDF_OPTION = "htmltrasform";
+    private static final String XML_TRANSFORM_OPTION = "xmltransform";
+    private static final String HTML_TRANSFORM_PDF_OPTION = "htmltransform";
     private static final String PDF_META_SET_OPTION = "pdfmetaset";
     private static final String PDF_META_GET_OPTION = "pdfmetaget";
     private static final String PDF_VALIDATE_OPTION = "pdfvalidate";
@@ -19,8 +19,8 @@ public class MainMenu {
         MainCommander com = new MainCommander();
 
         XMLValidateCommander xmlValidateCommander = new XMLValidateCommander();
-        XMLTrasformCommander xmlTrasformCommander = new XMLTrasformCommander();
-        HTMLTrasformCommander htmlTrasformCommander = new HTMLTrasformCommander();
+        XMLTransformCommander xmlTransformCommander = new XMLTransformCommander();
+        HTMLTransformCommander htmlTransformCommander = new HTMLTransformCommander();
         PDFMetaSetCommander pdfMetaSetCommander = new PDFMetaSetCommander();
         PDFMetaGetCommander pdfMetaGetCommander = new PDFMetaGetCommander();
         PDFValidateCommander pdfValidateCommander = new PDFValidateCommander();
@@ -31,8 +31,8 @@ public class MainMenu {
 
             jct = new JCommander(com);
             jct.addCommand(XML_VALIDATE_OPTION, xmlValidateCommander);
-            jct.addCommand(XML_TRASFORM_OPTION, xmlTrasformCommander);
-            jct.addCommand(HTML_TRASFORM_PDF_OPTION, htmlTrasformCommander);
+            jct.addCommand(XML_TRANSFORM_OPTION, xmlTransformCommander);
+            jct.addCommand(HTML_TRANSFORM_PDF_OPTION, htmlTransformCommander);
             jct.addCommand(PDF_META_SET_OPTION, pdfMetaSetCommander);
             jct.addCommand(PDF_META_GET_OPTION, pdfMetaGetCommander);
             jct.addCommand(PDF_VALIDATE_OPTION, pdfValidateCommander);
@@ -59,11 +59,11 @@ public class MainMenu {
             if(jct.getParsedCommand().equalsIgnoreCase(XML_VALIDATE_OPTION)){
                 XMLUtil xmlUtil = new XMLUtil(xmlValidateCommander.xml, xmlValidateCommander.xsd);
                 xmlUtil.validate();
-            }else if(jct.getParsedCommand().equalsIgnoreCase(XML_TRASFORM_OPTION)){
-                XMLUtil xmlUtil = new XMLUtil(xmlTrasformCommander.xml, xmlTrasformCommander.xslt, xmlTrasformCommander.output);
+            }else if(jct.getParsedCommand().equalsIgnoreCase(XML_TRANSFORM_OPTION)){
+                XMLUtil xmlUtil = new XMLUtil(xmlTransformCommander.xml, xmlTransformCommander.xslt, xmlTransformCommander.output);
                 xmlUtil.transformate();
-            }else if(jct.getParsedCommand().equalsIgnoreCase(HTML_TRASFORM_PDF_OPTION)){
-                HTMLUtil htmlUtil = new HTMLUtil(htmlTrasformCommander.input, htmlTrasformCommander.output);
+            }else if(jct.getParsedCommand().equalsIgnoreCase(HTML_TRANSFORM_PDF_OPTION)){
+                HTMLUtil htmlUtil = new HTMLUtil(htmlTransformCommander.input, htmlTransformCommander.output);
                 htmlUtil.transform();
             }else if(jct.getParsedCommand().equalsIgnoreCase(PDF_META_SET_OPTION)){
                 PDFUtil pdfUtil = new PDFUtil(pdfMetaSetCommander.pdf, pdfMetaSetCommander.xml, pdfMetaSetCommander.output);

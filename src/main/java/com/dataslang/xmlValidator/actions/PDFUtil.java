@@ -112,10 +112,7 @@ public class PDFUtil {
         parser.parse();
 
         PDDocument document=  parser.getPDDocument();
-        if(document.isEncrypted())
-        {
-            System.err.println("Warning ! Document is Encrypted!");
-        }
+
         PDDocumentCatalog cat = document.getDocumentCatalog();
         PDMetadata metadata = new PDMetadata(document);
         metadata.importXMPMetadata((new XMPMetadata(xmpDoc)));

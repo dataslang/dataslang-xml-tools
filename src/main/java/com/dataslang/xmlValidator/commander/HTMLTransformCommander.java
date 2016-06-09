@@ -10,4 +10,7 @@ public class HTMLTransformCommander {
 
     @Parameter(names = {"-o", "--output"}, required = true, description = "Generate the PDF into this destination")
     public String output;
+
+    @Parameter(names = {"-s", "--strategy"}, description = "Uses different methods, just pick one (1,2,3,4)")
+    public int version = 3;
 }

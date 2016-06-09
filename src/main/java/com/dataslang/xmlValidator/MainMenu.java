@@ -63,7 +63,7 @@ public class MainMenu {
                 XMLUtil xmlUtil = new XMLUtil(xmlTransformCommander.xml, xmlTransformCommander.xslt, xmlTransformCommander.output);
                 xmlUtil.transformate();
             }else if(jct.getParsedCommand().equalsIgnoreCase(HTML_TRANSFORM_PDF_OPTION)){
-                HTMLUtil htmlUtil = new HTMLUtil(htmlTransformCommander.input, htmlTransformCommander.output);
+                HTMLUtil htmlUtil = new HTMLUtil(htmlTransformCommander.input, htmlTransformCommander.output, htmlTransformCommander.version);
                 htmlUtil.transform();
             }else if(jct.getParsedCommand().equalsIgnoreCase(PDF_META_SET_OPTION)){
                 PDFUtil pdfUtil = new PDFUtil(pdfMetaSetCommander.pdf, pdfMetaSetCommander.xml, pdfMetaSetCommander.output);
